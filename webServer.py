@@ -1,7 +1,5 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
-# import urllib.parse
-# import cgi
 
 numbersOfDrones = -1
 file = None
@@ -20,9 +18,6 @@ class requestHandler(BaseHTTPRequestHandler):
     
     def do_GET(self):
         if self.path.endswith('/optimal-targets-classification'):
-            # targetFile = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query).get('targetFile', None)
-            # numberOfDrones = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query).get('numberOfDrones', None)
-            # print(numberOfDrones)
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
