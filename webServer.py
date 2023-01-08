@@ -2,7 +2,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 
 numbersOfDrones = -1
-file = None
+fileName = None
 
 class requestHandler(BaseHTTPRequestHandler):
     def end_headers(self): # CORS
@@ -30,6 +30,7 @@ class requestHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         global numbersOfDrones
+        global fileName
         if self.path.endswith('/numberOfDronesData'):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
@@ -37,8 +38,18 @@ class requestHandler(BaseHTTPRequestHandler):
             dataLength = int(self.headers["Content-Length"])
             data = self.rfile.read(dataLength)
             numbersOfDrones = json.loads(data).get("numberOfDrones")
-            print(numbersOfDrones)
+            print('Received number of drones: ' + numbersOfDrones)
             self.wfile.write('OK'.encode())
+        if self.path.endswith('/fileNameData'):
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            dataLength = int(self.headers["Content-Length"])
+            data = self.rfile.read(dataLength)
+            fileName = json.loads(data).get("fileName")
+            print('Received file name: ' + fileName)
+            self.wfile.write('OK'.encode())
+
 
 def main():
     PORT = 8000
