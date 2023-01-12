@@ -1,6 +1,5 @@
 from flask import Flask, Response,request, jsonify
 from http.server import HTTPServer, BaseHTTPRequestHandler
-import json
 import algorithm
 from flask_cors import CORS, cross_origin
 
@@ -25,9 +24,6 @@ def get_optimal_numbers_of_drones():
 def get_required_targets_classification():
     fileName = request.args.get('fileName')
     numberOfDrones = request.args.get('numberOfDrones')
-    print(numberOfDrones)
-    #results = algorithm.start_algorithm(fileName, numbersOfDrones)
-    #return results
     results = algorithm.start_algorithm(fileName, numberOfDrones)
     results = [1, 2, 3, 4, 5]
     return jsonify(results)
