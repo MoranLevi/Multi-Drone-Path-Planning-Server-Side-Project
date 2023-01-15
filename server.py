@@ -15,7 +15,7 @@ def get_optimal_numbers_of_drones():
     fileName = request.args.get('fileName')
     numbersOfDrones = -1
     results = algorithm.start_algorithm(fileName, numbersOfDrones)
-    results = [1, 2, 3, 4, 5]
+    # results = [1, 2, 3, 4, 5]
     return jsonify(results)
     #return results
     # return Response(f'Accepted - {fileName}', status=202, mimetype='application/json')
@@ -25,7 +25,7 @@ def get_required_targets_classification():
     fileName = request.args.get('fileName')
     numberOfDrones = request.args.get('numberOfDrones')
     results = algorithm.start_algorithm(fileName, numberOfDrones)
-    results = [1, 2, 3, 4, 5]
+    # results = [1, 2, 3, 4, 5]
     return jsonify(results)
     # return Response('Accepted', status=202, mimetype='application/json')
   
