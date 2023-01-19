@@ -1,34 +1,28 @@
-from flask import Flask, Response,request, jsonify
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from flask import Flask, request, jsonify
 import algorithm
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
-numbersOfDrones = -1
-fileName = None
-
+# Create the application instance with flask 
 app = Flask(__name__)
+# Configure CORS
 CORS(app)
 
+# Create a URL route in our application for "/optimal-targets-classification with get request"
 @app.route('/optimal-targets-classification', methods=['GET'])
 def get_optimal_numbers_of_drones():
-    # fileName="TSP100.txt"
-    fileName = request.args.get('fileName')
-    numbersOfDrones = -1
-    results = algorithm.start_algorithm(fileName, numbersOfDrones)
-    # results = [1, 2, 3, 4, 5]
-    return jsonify(results)
-    #return results
-    # return Response(f'Accepted - {fileName}', status=202, mimetype='application/json')
+    fileName = request.args.get('fileName') # Get the file name from the request
+    numbersOfDrones = -1 # Set the number of drones to -1, as this indicates the optimal number of drones
+    results = algorithm.start_algorithm(fileName, numbersOfDrones) # Call the algorithm with the file name and number of drones
+    return jsonify(results) # Return the results
 
+# Create a URL route in our application for "/required-targets-classification with get request"
 @app.route('/required-targets-classification', methods=['GET'])        
 def get_required_targets_classification():
-    fileName = request.args.get('fileName')
-    numberOfDrones = request.args.get('numberOfDrones')
-    results = algorithm.start_algorithm(fileName, numberOfDrones)
-    # results = [1, 2, 3, 4, 5]
-    return jsonify(results)
-    # return Response('Accepted', status=202, mimetype='application/json')
-  
+    fileName = request.args.get('fileName') # Get the file name from the request
+    numberOfDrones = request.args.get('numberOfDrones') # Get the number of drones from the request
+    results = algorithm.start_algorithm(fileName, numberOfDrones) # Call the algorithm with the file name and number of drones
+    return jsonify(results) # Return the results
 
+# main function
 if __name__ == '__main__':
-    app.run('localhost', '8000')
+    app.run('localhost', '8000') # Run the application on port 8000
