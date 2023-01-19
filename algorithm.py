@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import geneticAlgorithm
+import genetics
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 
@@ -103,12 +103,12 @@ def start_algorithm(fileName, numberOfDrones):
             pass
         cluster_of_cities.insert(0, c[0]) # Add the initial target to each cluster.
             
-        firstPopulation, firstFittest = geneticAlgorithm.selectPopulation(cluster_of_cities, int(population_size/K)) # Select initial population.
-        answer, genNumber = geneticAlgorithm.geneticAlgorithm( # answer = shortest path that was found, genNumber = generation number.
+        firstPopulation, firstFittest = genetics.selectPopulation(cluster_of_cities, int(population_size/K)) # Select initial population.
+        answer, genNumber = genetics.geneticAlgorithm( # answer = shortest path that was found, genNumber = generation number.
             firstPopulation,
             len(cluster_of_cities),
-            geneticAlgorithm.rankSelection,
-            geneticAlgorithm.inversionMutation,
+            genetics.rankSelection,
+            genetics.inversionMutation,
             mutation_rate,
             crossover_rate,
         )
