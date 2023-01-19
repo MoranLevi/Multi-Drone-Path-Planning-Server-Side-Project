@@ -31,5 +31,7 @@ def get_required_targets_classification():
 
 # main function
 if __name__ == '__main__':
-    print("Starting server...\n")
-    serve(app, host='localhost', port=8000) # Run the application on port 8000
+    port = 8000 # Set the port to 8000
+    host = 'localhost' # Set the host to localhost
+    print(f"Starting server on port {port}...\n")
+    serve(app, host=host, port=port) # Run the application on port 8000
