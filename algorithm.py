@@ -9,7 +9,6 @@ from sklearn.metrics import silhouette_score
 # Get cities info.
 def getCity(fileName):
     cities = []
-    # f = open("TSP100_good_also_for_5.txt")
     f = open("targetsFiles/" + fileName)
     for i in f.readlines():
         node_city_val = i.split()
@@ -234,7 +233,7 @@ def start_algorithm(fileName, numberOfDrones):
     CROSSOVER_RATE = 0.9 # The probability to perform a crossover operator.
     K = int(numberOfDrones) # The number groups to divide the targets.
     results = []
-    color = ""
+    # color = ""
     
     cities = getCity(fileName) # Read targets from file.
             
@@ -251,7 +250,7 @@ def start_algorithm(fileName, numberOfDrones):
         # Loop over a range of values for n_clusters
         for n_clusters in range(2, 11):
             # Create a KMeans model with the current value of n_clusters
-            kmeans = KMeans(n_clusters=n_clusters)
+            kmeans = KMeans(n_clusters=n_clusters, n_init=1)
             
             kmeans.fit(cities_without_first) # Fill the clusters with the targets.
             labels = kmeans.labels_ # Get the labels of the targets.
@@ -266,7 +265,7 @@ def start_algorithm(fileName, numberOfDrones):
         K = sorted_scores[0][0]
     
     # Clustering the targets using KMeans
-    kmeans = KMeans(n_clusters = K) # Create new instance to be filled K clusters.
+    kmeans = KMeans(n_clusters = K, n_init=1) # Create new instance to be filled K clusters.
     
     kmeans.fit(cities_without_first) # Fill the clusters with the targets.
     labels = kmeans.labels_ # Get the labels of the targets.
