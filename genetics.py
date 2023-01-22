@@ -5,7 +5,7 @@ from numpy.random import choice
 # global variables.
 tournament_selection_size = 4 # The number of random chromosomes to compete to select 2 parents from them.
 steady_state_selection_rate = 0.6 # The precentage of entire population
-generations_number = 50 # The number of generations to run the genetic algorithm.
+generations_number = 200 # The number of generations to run the genetic algorithm.
 
 # Tournament Selection.
 def tournamentSelection(population):
